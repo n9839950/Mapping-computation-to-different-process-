@@ -6,9 +6,9 @@
 #include  <Windows.h>
 
 //Initialize the variables
-int NUM_THREADS = 4;
+int NUM_THREADS = 16;
 
-int N = 42;
+long long N = 1500;
 
 double** A, ** B, ** C;
 
@@ -23,8 +23,7 @@ DWORD WINAPI MultiplyMultiplyMatrix(LPVOID lpThreadParameter) {
 		int startIndex = itemPerThread * threadID;
 		int endIndex =  min(startIndex + itemPerThread , N); 
 
-		for(int j=startIndex; j<endIndex; j++)
-			for (int i = 0; i < N; i++)
+		for(int i=startIndex; i<endIndex; i++)
 				for (int j = 0; j < N; j++)
 				{
 					double total = 0;
@@ -42,7 +41,7 @@ DWORD WINAPI MultiplyMultiplyMatrix(LPVOID lpThreadParameter) {
 int main(int argc, char* argv[])
 {
 	
-	long long N = 1500;
+	
 
 	A = new double* [N];
 	B = new double* [N];
